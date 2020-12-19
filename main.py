@@ -7,6 +7,7 @@ import os
 from youtubesearchpython import SearchVideos
 from replit import db
 import random
+from keep_up import keep_up
 
 
 client = discord.Client()
@@ -53,7 +54,6 @@ async def on_message(message):
     listy = videosSearch.result()['search_result']
     diction = listy[0]
     link = diction["link"]
-
     add_song(link)
     await message.channel.send("Added song to random list.")
 
@@ -64,5 +64,6 @@ async def on_message(message):
       index = int(userInput)
       delete_song(index)
       randomsongs = db["randomsongs"]
-    
+
+keep_up()
 client.run(os.getenv('TOKEN'))
